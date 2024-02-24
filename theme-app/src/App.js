@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import theme from "styled-theming";
 import { Provider as ReduxProvider } from "react-redux";
+
 import DarkThemeProvider from "./DarkThemeProvider";
 import DarkThemeToggle from "./DarkThemeToggle";
 import store from "./redux/store";
+
+import "./App.css";
 
 export const bgTheme = theme("theme", {
   light: "#fff",
@@ -34,6 +37,8 @@ const SwitchTheme = styled.div`
   justify-content: space-between;
   padding: 0 50px;
   height: 75px;
+  background: ${fontTheme};
+  color: ${bgTheme};
 `;
 
 const App = () => {
