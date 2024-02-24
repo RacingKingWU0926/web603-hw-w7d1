@@ -1,13 +1,17 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import theme from "styled-theming";
+import { Provider as ReduxProvider } from "react-redux";
+import DarkThemeProvider from "./DarkThemeProvider";
+import DarkThemeToggle from "./DarkThemeToggle";
+import store from "./redux/store";
 
-export const theme1 = theme("theme", {
+export const bgTheme = theme("theme", {
   light: "#fff",
   dark: "#2d2d2d",
 });
 
-export const theme2 = theme("theme", {
+export const fontTheme = theme("theme", {
   light: "#000",
   dark: "#fff",
 });
@@ -20,7 +24,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
-  background: ${theme1};
+  background: ${bgTheme};
+  color: ${fontTheme};
 `;
 
 const SwitchTheme = styled.div`
@@ -34,18 +39,20 @@ const SwitchTheme = styled.div`
 const App = () => {
   return (
     <React.Fragment>
-      <ThemeProvider theme={{ theme: "light" }}>
-        <SwitchTheme>
-          <h1>Theme App</h1>
-          <p>
-            <input type="checkbox" />Use Dark Theme
-          </p>
-        </SwitchTheme>
-        <Container>
-          <h2>Welcome!</h2>
-          <h3>Full Stack Web Development</h3>
-        </Container>
-      </ThemeProvider>
+      <ReduxProvider store={store}>
+        <DarkThemeProvider>
+          <SwitchTheme>
+            <h1>Theme App</h1>
+            <p>
+              <DarkThemeToggle />
+            </p>
+          </SwitchTheme>
+          <Container>
+            <h2>Welcome!</h2>
+            <h3>Full Stack Web Development</h3>
+          </Container>
+        </DarkThemeProvider>
+      </ReduxProvider>
     </React.Fragment>
   )
 }

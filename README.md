@@ -9,5 +9,5 @@ $ npx create-react-app theme-app
 
 Install the following dependencies by
 ```bash
-$ npm install styled-components styled-theming redux react-redux
+$ npm install styled-components styled-theming redux react-redux @reduxjs/toolkit
 ```
